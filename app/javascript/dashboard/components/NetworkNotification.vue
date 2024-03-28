@@ -80,7 +80,7 @@ export default {
 
     updateOnlineStatus(event) {
       if (event.type === 'offline') {
-        this.showNotification = true;
+        this.refreshPage();
       }
     },
   },

@@ -76,7 +76,7 @@
 
   &.left {
     .bubble {
-      @apply rounded-r-lg rounded-l mr-auto break-words;
+      @apply rounded-l-2xl rounded-r-2xl mr-auto break-words;
 
       &:not(.is-unsupported) {
         @apply border border-slate-50 dark:border-slate-700 bg-white dark:bg-slate-700 text-black-900 dark:text-slate-50;
@@ -140,7 +140,7 @@
     }
 
     .bubble {
-      @apply ml-auto break-words rounded-l-lg rounded-r;
+      @apply ml-auto break-words rounded-l-2xl rounded-r-2xl;
 
       &.is-private {
         @apply text-black-900 dark:text-white relative border border-solid bg-yellow-100 dark:bg-yellow-700 border-yellow-200 dark:border-yellow-600/25;

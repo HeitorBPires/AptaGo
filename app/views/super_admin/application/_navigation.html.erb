@@ -11,6 +11,7 @@ as defined by the routes in the `admin/` namespace
 
 <%
   sidebar_icons = {
+installation_configs: 'icon-gear',
     accounts: 'icon-building-4-line',
     users: 'icon-user-follow-line',
     platform_apps: 'icon-apps-2-line',
@@ -23,7 +24,7 @@ as defined by the routes in the `admin/` namespace
     <div class="flex mx-4 mb-4 border-slate-100 border-b py-6">
       <%= link_to image_tag('/brand-assets/logo_thumbnail.svg', alt: 'Chatwoot Admin Dashboard', class: 'h-10'), super_admin_root_url %>
       <div class="flex flex-col ml-3">
-        <div class="text-sm">Chatwoot <%= Chatwoot.config[:version] %></div>
+        <div class="text-sm">AptaGo <%= Chatwoot.config[:version] %></div>
         <div class="text-xs text-slate-700 mt-0.5">Super Admin Console</div>
       </div>
     </div>
@@ -31,7 +32,7 @@ as defined by the routes in the `admin/` namespace
     <ul class="my-4">
       <%= render partial: "nav_item", locals: { icon: 'icon-grid-line', url: super_admin_root_url, label: 'Dashboard' } %>
       <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
-        <% next if ["account_users", "access_tokens", "installation_configs", "dashboard", "devise/sessions", "app_configs", "instance_statuses", "responses", "response_sources", "response_documents" , "settings"].include?  resource.resource %>
+        <% next if ["account_users", "access_tokens", "dashboard", "devise/sessions", "app_configs", "instance_statuses", "responses", "response_sources", "response_documents" , "settings"].include?  resource.resource %>
         <%= render partial: "nav_item", locals: {
             icon: sidebar_icons[resource.resource.to_sym],
             url: resource_index_route(resource),

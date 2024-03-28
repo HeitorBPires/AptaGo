@@ -16,6 +16,13 @@ class Installation::OnboardingController < ApplicationController
     rescue StandardError => e
       redirect_to '/', flash: { error: e.message } and return
     end
+    InstallationConfig.update_all(locked: false)
+    pricing_plan = InstallationConfig.find_by(name: 'INSTALLATION_PRICING_PLAN')
+    pricing_plan_quantity = InstallationConfig.find_by(name: 'INSTALLATION_PRICING_PLAN_QUANTITY')
+    pricing_plan.value = 'premium'
+    pricing_plan_quantity.value = 999
+    pricing_plan_quantity.save!
+    pricing_plan.save!
     finish_onboarding
     redirect_to '/'
   end

@@ -202,13 +202,14 @@ export default {
         .then(() => {
           this.showAlert(this.$t('LOGIN.API.SUCCESS_MESSAGE'));
         })
-        .catch(response => {
+        .catch(() => {
           // Reset URL Params if the authentication is invalid
           if (this.email) {
             window.location = '/app/login';
           }
           this.loginApi.hasErrored = true;
-          this.showAlert(response?.message || this.$t('LOGIN.API.UNAUTH'));
+          this.showAlert(this.$t('LOGIN.API.UNAUTH'));
+          // this.showAlert(response?.message || this.$t('LOGIN.API.UNAUTH'));
         });
     },
   },
