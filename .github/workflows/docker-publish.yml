@@ -1,0 +1,26 @@
+name: Deploy Docker Image
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        uses: docker/login@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Build and Push Image
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          image_name: heitorbp/aptago
+          tags: ${{ github.ref }}
+          dockerfile_path: ./docker/Dockerfile
